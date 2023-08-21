@@ -1,20 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import { IAnimal } from '../models/Ianimal'
 export const Home = () => {
-    interface Animal {
-        name: string;
-        shortDescription: string;
 
-    }
-    // https://restcountries.com/#endpoints-region
-    const [animal, setAnimal] = useState<Animal[]>([]);
+
+    const [animal, setAnimal] = useState<IAnimal[]>([]);
 
     useEffect(() => {
         const getData = async () => {
             try {
-                const response = await axios.get<Animal[]>(
+                const response = await axios.get<IAnimal[]>(
                     '/src/animalsData/animals.json'
                 );
                 const animalsData = response.data;
