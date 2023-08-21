@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Home } from "./Home";
 import { Layout } from "./Layout";
 import { Error } from "./Error";
-import { AnimalInfo } from "./animalInfo"; // Update import statement
+import { AnimalInfo } from "./animalInfo";
 
 export const Router = createBrowserRouter([
     {
