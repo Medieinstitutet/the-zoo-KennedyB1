@@ -6,16 +6,12 @@ import { IAnimal } from '../models/Ianimal'
 
 
 export const Home = () => {
-
-
     const [animal, setAnimal] = useState<IAnimal[]>([]);
 
     useEffect(() => {
         const getData = async () => {
             try {
-                const response = await axios.get<IAnimal[]>(
-                    '/src/animalsData/animals.json'
-                );
+                const response = await axios.get<IAnimal[]>('/src/animalsData/animals.json');
                 const animalsData = response.data;
                 setAnimal(animalsData);
             } catch (error) {
@@ -32,7 +28,7 @@ export const Home = () => {
             <ul>
                 {animal.map((animal, index) => (
                     <li key={index}>
-                        <Link to={`${animal.name}`} >
+                        <Link to={`/${animal.name}`} state={{ animal }}>
                             <h2>{animal.name}</h2> <h3>{animal.shortDescription}</h3>
                         </Link>
                     </li>
