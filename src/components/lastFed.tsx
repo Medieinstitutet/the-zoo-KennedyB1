@@ -15,6 +15,7 @@ export const LastFed = () => {
         const updatedAnimal: IAnimal = {
             ...fedAnimal,
             lastFed: new Date().toISOString(),
+            isFed: true,
         };
         setFedAnimal(updatedAnimal);
         setButton(true);
@@ -33,8 +34,8 @@ export const LastFed = () => {
     return (
         <>
 
-            <p>Last Fed: {fedAnimal.lastFed}</p>
 
+            {fedAnimal.isFed ? 'Matad' : 'Inte matad'}<br />
             <button onClick={handleFeedClick} disabled={buttonDisabled}>Mata djur</button>
 
         </>

@@ -29,7 +29,8 @@ export const Animals = () => {
                 {animal.map((animal, index) => (
                     <li key={index}>
                         <Link to={`/Animals/${animal.name}`} state={{ animal }}>
-                            <h2>{animal.name}</h2> <h3>{animal.shortDescription}</h3>
+                            <h2>{animal.name}</h2>
+                            <h3>{animal.shortDescription}</h3>
                         </Link>
                     </li>
                 ))}
