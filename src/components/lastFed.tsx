@@ -34,8 +34,8 @@ export const LastFed = () => {
     return (
         <>
 
-
-            {fedAnimal.isFed ? 'Matad' : 'Inte matad'}<br />
+            <p>Senast matad: {fedAnimal.lastFed}</p>
+            <p>{fedAnimal.isFed ? 'Matad' : 'Inte matad'}</p>
             <button onClick={handleFeedClick} disabled={buttonDisabled}>Mata djur</button>
 
         </>
