@@ -1,5 +1,9 @@
+import { Link } from "react-router-dom"
+
 export const Header = () => {
 
-    return <h2>Header</h2>
+    return <><Link to={`/animals`}>
+        <h3>Animals</h3>
+    </Link></>
 
 }
