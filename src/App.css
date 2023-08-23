@@ -3,17 +3,24 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  
 }
 
 .animals ul{
   list-style-type: none;
   padding: 0;
+  
 }
 
 .animals li{
 
   border: 2px solid white;
   margin-bottom: 10px;
+  
+}
+
+.animals, h2, h3 {
+  color: white;
 }
 
 .animalImg{
@@ -34,7 +41,7 @@ header{
 }
 
 .headerButton{
-background: blue;
+background: greenyellow;
 
 }
 
