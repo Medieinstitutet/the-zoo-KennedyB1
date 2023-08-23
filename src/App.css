@@ -35,10 +35,23 @@ header{
 
 .headerButton{
 background: blue;
+
 }
 
 main {
 
   margin-top: 4rem;
 }
+
+button{
+
+  cursor: pointer;
+}
+
+
+button:disabled{
+
+  cursor: not-allowed;
+}
+
 
