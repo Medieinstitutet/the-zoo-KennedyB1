@@ -18,7 +18,6 @@ export const LastFed = () => {
             isFed: true,
         };
         setFedAnimal(updatedAnimal);
-        setButton(true);
 
         localStorage.setItem(`fedAnimal_${animal.name}`, JSON.stringify(updatedAnimal));
     };
@@ -35,8 +34,8 @@ export const LastFed = () => {
     return (
         <>
 
-            <span>Senast matad: {fedAnimal.lastFed}</span>
-            <span>{fedAnimal.isFed ? 'Matad' : 'Inte matad'}</span>
+            <p>Senast matad: {fedAnimal.lastFed}</p>
+            <p>{fedAnimal.isFed ? 'Matad' : 'Inte matad'}</p>
             <button onClick={handleFeedClick} disabled={buttonDisabled}>Mata djur</button>
 
         </>
