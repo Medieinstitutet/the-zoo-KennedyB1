@@ -5,39 +5,46 @@ import { useState, useEffect } from 'react';
 export const LastFed = () => {
     const location = useLocation();
     const animal = location.state?.animal as IAnimal;
-
-    const [fedAnimal, setFedAnimal] = useState<IAnimal>(animal);
     const [buttonDisabled, setButton] = useState<boolean>(false);
+    const containerName = 'fedAnimalsContainer';
+   
+    const getContainerData = () => {
+        const containerData = localStorage.getItem(containerName);
+        return containerData ? JSON.parse(containerData) : [];
+    };
 
-
+    const [fedAnimals, setFedAnimals] = useState<IAnimal[]>(getContainerData);
 
     const handleFeedClick = () => {
         const updatedAnimal: IAnimal = {
-            ...fedAnimal,
+            ...animal,
             lastFed: new Date().toISOString(),
             isFed: true,
         };
-        setFedAnimal(updatedAnimal);
 
-        localStorage.setItem(`fedAnimal_${animal.name}`, JSON.stringify(updatedAnimal));
+        setFedAnimals((prevAnimals) => [...prevAnimals, updatedAnimal]);
+        setButton(true);
+
+        localStorage.setItem(containerName, JSON.stringify([...fedAnimals, updatedAnimal]));
     };
 
     useEffect(() => {
+        const containerData = getContainerData();
+        setFedAnimals(containerData);
 
-        const storedFedAnimal = localStorage.getItem(`fedAnimal_${animal.name}`);
-        if (storedFedAnimal) {
-            setFedAnimal(JSON.parse(storedFedAnimal));
-            setButton(fedAnimal.isFed)
-        }
-    }, [animal, fedAnimal.isFed]);
+        const isAnimalFed = containerData.some((a: IAnimal) => a.name === animal.name);
+        setButton(isAnimalFed);
+    }, [animal]);
+
+    const lastFedText = fedAnimals.find((a) => a.name === animal.name)?.lastFed || animal.lastFed;
 
     return (
         <>
-
-            <p>Senast matad: {fedAnimal.lastFed}</p>
-            <p>{fedAnimal.isFed ? 'Matad' : 'Inte matad'}</p>
-            <button onClick={handleFeedClick} disabled={buttonDisabled}>Mata djur</button>
-
+            <p>Senast matad: {lastFedText}</p>
+            <p>{buttonDisabled ? 'Matad' : 'Inte matad'}</p>
+            <button onClick={handleFeedClick} disabled={buttonDisabled}>
+                Mata djur
+            </button>
         </>
     );
 };
